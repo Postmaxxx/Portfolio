@@ -35,9 +35,15 @@ module.exports = {
                 test: /\.(png|bmp|jpe?g|gif|svg)$/,
                 type: 'asset/resource',
                 generator : {
-                    filename : 'images/[contenthash][ext][query]',
+                    filename : 'images/[name].[contenthash][ext][query]',
                   }
-            
+            },
+            {
+                test: /\.(ttf|woff|woff2|out)$/,
+                type: 'asset/resource',
+                generator : {
+                    filename : 'fonts/[name][ext][query]',
+                  }
             }
         ]
     }

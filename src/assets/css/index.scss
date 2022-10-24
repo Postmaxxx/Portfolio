@@ -1,12 +1,10 @@
-h1 {
-    color: blue;
-    text-align: center;
+@use "sass:map";
+@import "variables.scss";
+@import "fonts.scss";
+
+
+body {
+    font-family: "Roboto-Regular", sans-serif;
+    background-color: map.get($light, "bg");
 }
 
-.logo {
-    height: 600px;
-    width: 600px;
-    background-image: url('../img/test2.jpg');
-    background-size: cover;
-    margin: 0 auto;
-}
