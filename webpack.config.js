@@ -5,8 +5,7 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 module.exports = {
     context: path.resolve(__dirname, 'src'),
     entry: {
-        main: './index.js',
-
+        main: './assets/js/index.js',
     },
     output: {
         filename: '[name].[contenthash].js',
@@ -14,9 +13,9 @@ module.exports = {
     },
     plugins: [
         new HTMLWebpackPlugin({
-            template: './index.html'
+            template: './_layout.twig' 
         }),
-       new CleanWebpackPlugin()
+       new CleanWebpackPlugin(),
     ],
     module: {
         rules: [
@@ -44,8 +43,30 @@ module.exports = {
                 generator : {
                     filename : 'fonts/[name][ext][query]',
                   }
-            }
+            },
+            {
+                test: /\.twig$/,
+                use: [
+                  'raw-loader',
+                  {
+                    loader: 'twig-html-loader',
+                    options: {
+                      data: {}
+                    }
+                  }
+                ]
+              },
         ]
-    }
-
+    },
+    devServer: {
+        static: {
+          directory: './build',
+        },
+        compress: false,
+        port: 80,
+        client: {
+            progress: true,
+        },
+        liveReload: true,
+      },
 }
